@@ -323,3 +323,16 @@
         font-size: 16px;
     }
 }
+
+
+#gallery a {
+    max-width: 160px;
+    max-height: 160px;
+    display: inline-block;
+    overflow: hidden;
+    margin: 10px;
+}
+#gallery img {
+    height: 100%;
+    width: 100%;
+}
