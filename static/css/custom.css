@@ -309,22 +309,45 @@
 }
 
 
+.home {
+    width: 100%;
+    height: 100%;
+}
+.sig {
+    display: block;
+    font-size: 60px;
+    margin: 0 auto;
+    clear: right;
+    width: 400px;
+}
+.date {
+    display: block;
+    font-size: 30px;
+    margin: 0 auto;
+    clear: right;
+    width: 196px;
+    font-style: italic;
+    margin-top: 30px;
+}
+.next {
+    position: absolute;
+    bottom: 50px;
+    left: 49%;
+}
 #gallery a {
     display: inline-block;
     overflow: hidden;
     margin-right: 15px;
     margin-top: 15px;
-    width: 200px;
-    height: 200px;
+    width: 205px;
+    height: 205px;
 }
 #gallery .landscape {
-    height: 120%;
-    margin-left: -62px;
+    height: 100%;
+    margin-left: -25px;
 }
 #gallery .portrait {
-    width: 120%;
-    margin-top: -40px;
-    margin-left: -20px;
+    width: 100%;
 }
 
 body {
