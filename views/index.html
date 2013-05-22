@@ -1,0 +1,84 @@
+<%
+    from PIL import Image
+%>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <title>Wedding Images for YS & GL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="Flynn" />
+        <link rel="shortcut icon" href="/img/favicon.ico"> 
+        
+        <link rel="stylesheet" href="/static/css/jquery.fancybox.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+        <script type="text/javascript" src="/static/js/modernizr.custom.79639.js"></script>
+    </head>
+    <body>
+        <div class="container demo-2">
+            <div id="slider" class="sl-slider-wrapper">
+                <div class="sl-slider">
+                    % for img in slide_imgs:
+                    <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                        <div class="sl-slide-inner">
+                            <div class="bg-img" style="background-image: url(${img});"></div>
+                        </div>
+                    </div>
+                    % endfor
+                </div>
+                <nav id="nav-dots" class="nav-dots">
+                    % for img in slide_imgs:
+                    <span class="${'nav-dot-current' if loop.index == 0 else ''}"></span>
+                    % endfor
+                </nav>
+            </div><!-- /slider-wrapper -->
+            <div class="content-wrapper">
+                <div id="gallery">
+                    % for img in gallery_imgs:
+                    <%
+                        w, h = Image.open(open(img)).size
+                        print img, w, h
+                    %>
+                    <a href="${img}" class="fancybox ">
+                        <img src="${img}" class="${(w < h) and 'portrait' or 'landscape'}" alt="" />
+                    </a>
+                    % endfor
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+		<script type="text/javascript" src="/static/js/jquery.ba-cond.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.slitslider.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript">	
+			$(function() {
+                var $nav = $( '#nav-dots > span' ),
+                    slitslider = $( '#slider' ).slitslider( {
+                        onBeforeChange : function( slide, pos ) {
+                            $nav.removeClass( 'nav-dot-current' );
+                            $nav.eq( pos ).addClass( 'nav-dot-current' );
+                        }
+                    });
+
+                $nav.each( function( i ) {
+                    $( this ).on( 'click', function( event ) {
+                        var $dot = $( this );
+                        if( !slitslider.isActive() ) {
+                            $nav.removeClass( 'nav-dot-current' );
+                            $dot.addClass( 'nav-dot-current' );
+                        }
+                        slitslider.jump( i + 1 );
+                        return false;
+                    });
+                });
+
+                $('.fancybox').fancybox();
+			});
+		</script>
+	</body>
+</html>
