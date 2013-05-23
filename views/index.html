@@ -14,20 +14,14 @@
         <link rel="shortcut icon" href="/img/favicon.ico"> 
         
         <link rel="stylesheet" href="/static/css/jquery.fancybox.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/static/css/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
+        
         <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
-        <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/main.less.css" />
         <script type="text/javascript" src="/static/js/modernizr.custom.79639.js"></script>
     </head>
     <body>
         <div class="container demo-2">
-            <div class="home">
-                <span class="sig" style="width: 300px; padding-top: 15%;">Yin Shuang</span>
-                <span class="sig" style="width: 50px;">&</span>
-                <span class="sig" style="width: 180px;">Gao Li</span>
-                <span class="date">April 30, 2013</span>
-                <img src="/static/img/next-dk.png" class="next" alt="" />
-            </div>
             <div id="slider" class="sl-slider-wrapper">
                 <div class="sl-slider">
                     % for img in slide_imgs:
@@ -43,7 +37,16 @@
                     <span class="${'nav-dot-current' if loop.index == 0 else ''}"></span>
                     % endfor
                 </nav>
-            </div><!-- /slider-wrapper -->
+            </div>
+            <div class="home">
+                <span class="sig" style="width: 300px; padding-top: 15%;">Yin Shuang</span>
+                <span class="sig" style="width: 50px;">&</span>
+                <span class="sig" style="width: 180px;">Gao Li</span>
+                <span class="date">April 30, 2013</span>
+                <div id="scroll-down">
+                    <img src="/static/img/next-dk.png" class="next" alt="" />
+                </div>
+            </div>
             <div class="content-wrapper">
                 <div id="gallery">
                     % for img in gallery_imgs:
@@ -51,7 +54,7 @@
                         w, h = Image.open(open(img)).size
                         print img, w, h
                     %>
-                    <a href="${img}" class="fancybox ">
+                    <a href="${img}" class="img-box fancybox fancybox-thumb" rel="fancybox-thumb">
                         <img src="${img}" class="${(w < h) and 'portrait' or 'landscape'}" alt="" />
                     </a>
                     % endfor
@@ -60,32 +63,27 @@
         </div>
 
 		<script type="text/javascript" src="/static/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/static/js/jquery.ba-cond.min.js"></script>
-		<script type="text/javascript" src="/static/js/jquery.slitslider.js"></script>
         <script type="text/javascript" src="/static/js/jquery.fancybox.pack.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.fancybox-thumbs.js"></script>
 		<script type="text/javascript">	
 			$(function() {
-                var $nav = $( '#nav-dots > span' ),
-                    slitslider = $( '#slider' ).slitslider( {
-                        onBeforeChange : function( slide, pos ) {
-                            $nav.removeClass( 'nav-dot-current' );
-                            $nav.eq( pos ).addClass( 'nav-dot-current' );
+                $('.fancybox').fancybox({
+                    padding: 0,
+                    helpers	: {
+                    prevEffect		: 'fade',
+                    nextEffect		: 'fade',
+                        thumbs	: {
+                            width	: 50,
+                            height	: 50
                         }
-                    });
-
-                $nav.each( function( i ) {
-                    $( this ).on( 'click', function( event ) {
-                        var $dot = $( this );
-                        if( !slitslider.isActive() ) {
-                            $nav.removeClass( 'nav-dot-current' );
-                            $dot.addClass( 'nav-dot-current' );
-                        }
-                        slitslider.jump( i + 1 );
-                        return false;
-                    });
+                    }
                 });
 
-                $('.fancybox').fancybox();
+                $("#scroll-down").click(function() {
+                    $('html, body').animate({
+                        scrollTop: $("#slider").offset().top
+                    }, 600);
+                });
 			});
 		</script>
 	</body>
