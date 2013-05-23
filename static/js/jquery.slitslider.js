@@ -68,7 +68,7 @@
 
 	$.Slitslider.defaults = {
 		// transitions speed
-		speed : 800,
+		speed : 900,
 		// if true the item's slices will also animate the opacity value
 		optOpacity : false,
 		// amount (%) to translate both slices - adjust as necessary
