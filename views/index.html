@@ -22,6 +22,15 @@
     </head>
     <body>
         <div class="container demo-2">
+            <div class="home">
+                <span class="sig" style="width: 300px; padding-top: 15%;">Yin Shuang</span>
+                <span class="sig" style="width: 50px;">&</span>
+                <span class="sig" style="width: 180px;">Gao Li</span>
+                <span class="date">April 30, 2013</span>
+                <div id="scroll-down">
+                    <img src="/static/img/next-dk.png" class="next" alt="" />
+                </div>
+            </div>
             <div id="slider" class="sl-slider-wrapper">
                 <div class="sl-slider">
                     % for img in slide_imgs:
@@ -37,15 +46,6 @@
                     <span class="${'nav-dot-current' if loop.index == 0 else ''}"></span>
                     % endfor
                 </nav>
-            </div>
-            <div class="home">
-                <span class="sig" style="width: 300px; padding-top: 15%;">Yin Shuang</span>
-                <span class="sig" style="width: 50px;">&</span>
-                <span class="sig" style="width: 180px;">Gao Li</span>
-                <span class="date">April 30, 2013</span>
-                <div id="scroll-down">
-                    <img src="/static/img/next-dk.png" class="next" alt="" />
-                </div>
             </div>
             <div class="content-wrapper">
                 <div id="gallery">
@@ -65,8 +65,32 @@
 		<script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/jquery.fancybox.pack.js"></script>
         <script type="text/javascript" src="/static/js/jquery.fancybox-thumbs.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.ba-cond.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.slitslider.js"></script>
+
+
 		<script type="text/javascript">	
 			$(function() {
+                var $nav = $( '#nav-dots > span' ),
+                    slitslider = $( '#slider' ).slitslider( {
+                        onBeforeChange : function( slide, pos ) {
+                            $nav.removeClass( 'nav-dot-current' );
+                            $nav.eq( pos ).addClass( 'nav-dot-current' );
+                        },
+                        autoplay: true
+                    });
+                $nav.each( function( i ) {
+                    $( this ).on( 'click', function( event ) {
+                        var $dot = $( this );
+                        if( !slitslider.isActive() ) {
+                            $nav.removeClass( 'nav-dot-current' );
+                            $dot.addClass( 'nav-dot-current' );
+                        }
+                        slitslider.jump( i + 1 );
+                        return false;
+                    });
+                });
+
                 $('.fancybox').fancybox({
                     padding: 0,
                     helpers	: {

@@ -39,11 +39,6 @@ a {
 	position: relative;
 }
 
-.container.demo-1 {
-	height: 100%;
-	position: absolute;
-}
-
 .clr {
 	clear: both;
 	padding: 0;
@@ -123,13 +118,6 @@ a {
 .codrops-demos {
 	float: right;
 	padding-top: 10px;
-}
-
-.demo-1 .codrops-demos {
-	position: absolute;
-	z-index: 2000;
-	top: 30px;
-	left: 30px;
 }
 
 .codrops-demos a {

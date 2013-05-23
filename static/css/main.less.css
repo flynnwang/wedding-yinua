@@ -18,12 +18,12 @@ body {
 }
 .home .date {
   display: block;
-  font-size: 30px;
+  font-size: 25px;
   font-style: italic;
-  margin-top: 30px;
-  width: 196px;
+  width: 160px;
   margin: 0 auto;
   clear: right;
+  margin-top: 50px;
 }
 .home #scroll-down {
   cursor: pointer;
@@ -35,8 +35,11 @@ body {
 }
 .home #scroll-down .next {
   position: absolute;
-  left: 50%;
+  left: 49%;
   margin-top: 13px;
+}
+#gallery {
+  margin-top: 15px;
 }
 #gallery .img-box {
   display: inline-block;
@@ -47,11 +50,10 @@ body {
   height: 205px;
 }
 #gallery .img-box .landscape {
-  width: 205px;
   height: 100%;
-  margin-left: -25px;
+  margin-left: -50px;
 }
 #gallery .img-box .portrait {
-  height: 205px;
   width: 100%;
+  margin-top: -20px;
 }
