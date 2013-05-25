@@ -7,12 +7,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-        <title>Wedding Images for YS & GL</title>
+        <title>YS & GL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="Flynn" />
-        <link rel="shortcut icon" href="/img/favicon.ico"> 
+        <link rel="shortcut icon" href="/static/img/favicon.ico"> 
         
         <link rel="stylesheet" href="/static/css/jquery.fancybox.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
@@ -52,7 +52,7 @@
                     <%
                         w, h = Image.open(open(img)).size
                         img_cls = (w < h) and 'portrait' or 'landscape'
-                        if math.fabs(w - h) < 50:
+                        if math.fabs(w - h) < 60:
                             img_cls += " nomargin"
                     %>
                     <a href="${img.replace('gallery', 'full')}" class="img-box fancybox fancybox-thumb" rel="fancybox-thumb">
@@ -61,7 +61,13 @@
                     % endfor
                 </div>
             </div>
+            <footer>
+            <div class="container">
+                  <p class="muted credit">© Flynn 2013.</p>
+              </div>
+            </footer>
         </div>
+
 
 		<script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/jquery.fancybox.pack.js"></script>

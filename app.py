@@ -24,7 +24,7 @@ def server_static(filepath):
 def index():
     slide_imgs = image_paths('static/images')
     gallery_imgs = image_paths('static/gallery')
-    return template('index.html', **locals())
+    return template('index_tmpl.html', **locals())
 
 if __name__ == '__main__':
     arguments = docopt(__doc__)
